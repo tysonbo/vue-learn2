@@ -1,0 +1,34 @@
+[
+    {
+        "userid":"A12345",
+        "isActive": "true",
+        "environment": "dev",
+        "role": "processor",
+        "profile": "csr",
+        "mode": "internal"
+    },
+    {
+        "userid":"A99999",
+        "isActive": "true",
+        "environment": "qa",
+        "role": "manager",
+        "profile": "csr",
+        "mode": "internal"
+    },
+    {
+        "userid":"A88888",
+        "isActive": "true",
+        "environment": "qa",
+        "role": "processor",
+        "profile": "ca",
+        "mode": "internal"
+    },
+    {
+        "userid":"A77777",
+        "isActive": "true",
+        "environment": "dev",
+        "role": "callTaker",
+        "profile": "sales",
+        "mode": "internal"
+    }
+] 
