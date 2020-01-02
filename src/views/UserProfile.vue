@@ -12,14 +12,14 @@
                     <table style="width: 100%; margin-bottom: 15px;">
                         <tr>
                             <td width="150px">UserId:</td>
-                            <td><label id="userIdLabel" class="text">{{ clonedUser.userid }}</label></td> 
+                            <td><label id="userIdLabel" class="text">{{ user.userid }}</label></td> 
                         </tr>
                         <tr>
                             <td width="150px">Environment:</td>
                             <td>
                                 <select style="width:300px" name="environmentSelect" id="environmentSelect" 
-                                class="form-control" v-model="clonedUser.environment"
-                                :class="{ invalid: !clonedUser.environment }"
+                                class="form-control" v-model="user.environment"
+                                :class="{ invalid: !user.environment }"
                                 >
                                     <option disabled value>Select an Environment</option>
                                     <option value="dev">Development</option>
@@ -32,8 +32,8 @@
                             <td width="150px">Role:</td>
                             <td>
                                 <select style="width:300px" name="roleSelect" id="roleSelect" 
-                                class="form-control" v-model="clonedUser.role"
-                                :class="{ invalid: !clonedUser.role }"
+                                class="form-control" v-model="user.role"
+                                :class="{ invalid: !user.role }"
                                 >
                                     <option disabled value>Select a Role</option>
                                     <option value="callTaker">Call Taker</option>
@@ -46,8 +46,8 @@
                             <td width="150px">Business Profile:</td>
                             <td>
                                 <select style="width:300px" name="profileSelect" id="profileSelect" 
-                                class="form-control" v-model="clonedUser.profile"
-                                :class="{ invalid: !clonedUser.profile }"
+                                class="form-control" v-model="user.profile"
+                                :class="{ invalid: !user.profile }"
                                 >
                                     <option disabled value>Select a Profile</option>
                                     <option value="ca">Commercial Auto</option>
@@ -60,8 +60,8 @@
                             <td width="150px">Mode:</td>
                             <td>
                                 <select style="width:300px" name="modeSelect" id="modeSelect" 
-                                class="form-control" v-model="clonedUser.mode" 
-                                :class="{ invalid: !clonedUser.mode }"
+                                class="form-control" v-model="user.mode" 
+                                :class="{ invalid: !user.mode }"
                                 >
                                     <option disabled value>Select a Mode</option>
                                     <option value="internal">Internal</option>
@@ -96,46 +96,40 @@
  
  export default { 
     name: 'userprofile',
-    props: {
-        userid: String,
-        user: {
-            userid: String,
-            isActive: false,
-            environment: String,
-            role: String, 
-            profile: String, 
-            mode: String,
-        }
-    },
     data() {
         return {
-            clonedUser: { ...this.user },
-            message: "User object status...",
+        user: {
+            userid: "",
+            isActive: false,
+            environment: "",
+            role: "", 
+            profile: "", 
+            mode: "",
+        },          message: "User object status...",
             isValid: false
         };
     },
     created() {
-        alert('UserProfile object created ' + this.userid);
+        this.user = this.$store.getters.getuserbyid(this.currentUser);
     },
     methods: {
         DisplayUserObjectStatus() {
-            this.message = JSON.stringify(this.clonedUser, null, '\n');
+            this.message = JSON.stringify(this.user, null, '\n');
         },
         ValidateForSave(){
-            if (this.clonedUser.environment &&
-                this.clonedUser.role &&
-                this.clonedUser.profile &&
-                this.clonedUser.mode) {
+            if (this.user.environment &&
+                this.user.role &&
+                this.user.profile &&
+                this.user.mode) {
                 this.isValid = true;
             }
             else {
                 this.isValid = false;
             }
         },
-
     },
     watch: {
-        clonedUser: {
+        user: {
             immediate: true,
             deep: true,
             handler() {
@@ -143,6 +137,17 @@
                 this.ValidateForSave();
             }
         },
+        currentUser: {
+            immediate: false,
+            handler() {
+                this.user = this.$store.getters.getuserbyid(this.currentUser);
+            }
+        }
+    },
+    computed: {
+      currentUser() {
+        return this.$store.state.currentUser;
+      }
     },
  }
 

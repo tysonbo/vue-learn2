@@ -1,21 +1,35 @@
 <template>
     <div id="mainLNContainer" >
         <div class="nav-table">
+          <router-link to="/"> 
+            <div class="nav-element standard-theme" data-description="Navigate to the Home page">
+              <div class="nav-element-inner">
+                <div class="description">Home Page</div>
+              </div>
+            </div>  
+          </router-link>      
+          <router-link 
+            :to="{ name: 'userprofile', params: { userid: currentUser } }"> 
+            <div class="nav-element standard-theme" data-description="Update your profile settings">
+              <div class="nav-element-inner">
+                <div class="description">User Profile</div>
+              </div>
+            </div>  
+          </router-link>    
+          <router-link to="/about">
         <div class="nav-element standard-theme" data-description="Search by Phone Number">
             <div class="nav-element-inner">
-                <div class="title">Phn</div>
                 <div class="description">Phone Search</div>
             </div>
         </div>
+          </router-link>
         <div class="nav-element standard-theme" data-description="Search by Policy Number">
             <div class="nav-element-inner">
-                <div class="title">Pol</div>
                 <div class="description">Policy Search</div>
             </div>
         </div>
         <div class="nav-element standard-theme" data-description="Search by Claim or Quote">
             <div class="nav-element-inner">
-                <div class="title">Clm</div>
                 <div class="description">Claim Search</div>
             </div>
         </div>    
@@ -25,7 +39,12 @@
 
 <script>
 export default {
-    name: "leftnavbar"
+    name: "leftnavbar",
+    computed: {
+      currentUser() {
+        return this.$store.state.currentUser;
+      }
+    }
 }
 
 </script>
@@ -33,13 +52,13 @@ export default {
 <style scoped>
 .nav-table {
   display: grid;
-  grid-template-columns: repeat(1, 120px);
-  grid-template-rows: repeat(3, 95px);
+  grid-template-columns: repeat(1, 130px);
+  grid-template-rows: repeat(3, 45px);
   grid-gap: 10px;
   margin: 10px;
   max-width: 150px;
   justify-content:center;
-  background-color: white;
+  /* background-color: white; */
 }
 
 .nav-element {
@@ -64,7 +83,7 @@ export default {
   transition: 0.8s ease 600ms;
 }
 .nav-element .description {
-  font: 500 12px "Poppins", sans-serif;
+  font: 500 14px "Poppins", sans-serif;
   margin-top: -0.2em;
 }
 .nav-element:after {

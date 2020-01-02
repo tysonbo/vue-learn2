@@ -1,27 +1,48 @@
 <template>
     <div id="rightNav" style="width:160px">
-      <router-link to="/">        
-        <div class="nav-element standard-theme" data-description="Return to the starting point">
-            <div class="nav-element-inner">
-                <div class="title">Home</div>
+          <router-link to="/"> 
+            <div class="nav-element standard-theme" data-description="Navigate to the Home page">
+              <div class="nav-element-inner">
                 <div class="description">Home Page</div>
+              </div>
+            </div>  
+          </router-link>      
+          <router-link 
+            :to="{ name: 'userprofile', params: { userid: currentUser } }"> 
+            <div class="nav-element standard-theme" data-description="Update your profile settings">
+              <div class="nav-element-inner">
+                <div class="description">User Profile</div>
+              </div>
+            </div>  
+          </router-link>    
+          <router-link to="/about">
+        <div class="nav-element standard-theme" data-description="Search by Phone Number">
+            <div class="nav-element-inner">
+                <div class="description">Phone Search</div>
             </div>
-        </div></router-link> |<br />
-      <router-link to="/about">About</router-link> |<br/>
-      <router-link 
-        :to="{ name: 'userprofile', params: {id: userid } }">        
+        </div>
+          </router-link>
+        <div class="nav-element standard-theme" data-description="Search by Policy Number">
+            <div class="nav-element-inner">
+                <div class="description">Policy Search</div>
+            </div>
+        </div>
         <div class="nav-element standard-theme" data-description="Search by Claim or Quote">
             <div class="nav-element-inner">
-                <div class="title">Clm</div>
                 <div class="description">Claim Search</div>
             </div>
-        </div></router-link> |<br/>
+        </div>   
     </div>
 </template>
 
 <script>
 export default {
-    name: "rightnavbar"
+    name: "rightnavbar",
+    computed: {
+      currentUser() {
+        return this.$store.state.currentUser;
+      }
+    }
 }
 </script>
 
@@ -41,6 +62,7 @@ export default {
 
 .nav-element {
   padding: 4px;
+  margin: 10px;
   margin-left: 15px;
   width: 130px;
   position: relative;

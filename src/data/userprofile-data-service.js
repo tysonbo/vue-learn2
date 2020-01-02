@@ -2,11 +2,11 @@ import * as axios from 'axios';
 
   const getusers = async function() {
     try {
-      const response = await axios.get('./userprofile.json');
+      const response = await axios.get('../src/data/userprofile.json');
       let data = parseList(response);
       return data;   
     } catch (error) {
-      console.error(error);
+      //console.error(error);
       return [];
     }
   };
@@ -22,7 +22,7 @@ import * as axios from 'axios';
   };
   
 
-  export const data = {
+  export const userprofiledata = {
     getusers,
   };
 

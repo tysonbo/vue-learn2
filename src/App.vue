@@ -1,36 +1,45 @@
 <template>
   <div id="app">
-
-    
-        <table style="width:100%;height:100%">
+    <div id="outercontainer" class="app-container">
+      <div class="outercontent">
+        <header style="background-color: #356356"><bannernavbar/></header>
+        <div class="content-fill">
+          <table style="width:100%; height: 100%">
+            <tr>
+              <td class="side-nav-selector">
+                <span @click="resizeLeftNav">&#8801;</span>
+                </td>
+              <td id="leftNavCell" class="nav-cell" style="width:160px;">
+                <leftnavbar id="leftNavComp" style="display:inline-block" />
+              </td>
+              <td id="mainContentCell" class="scrollable" style="padding:10px;">
+                <router-view/>
+              </td>
+              <td id="rightNavCell" class="nav-cell" style="width:160px;">
+                <rightnavbar id="rightNavComp" class="side-nav-bar" style="display:inline-block" />
+              </td>
+              <td class="side-nav-selector">
+                <span @click="resizeRightNav">&#8801;</span>
+                </td>
+            </tr>
+          </table>
+        </div>
+        <footer style="background-color: #3b3b3b; height: 100px; color: white">This is the footer</footer>
+      </div>
+    </div>
+    <!-- <table style="width:100%;height:100%">
       <tr class="banner-row">
-        <td id="bannerCell" colspan=5>    
-          <bannernavbar :userid=defaultid />
+        <td id="bannerCell" colspan=5>     
+          <bannernavbar/>
         </td>
       </tr> 
-      <tr>
-        <td class="side-nav-selector">
-          <span @click="resizeLeftNav">&#8801;</span>
-          </td>
-        <td id="leftNavCell" class="nav-cell" style="width:160px;">
-          <leftnavbar id="leftNavComp" style="display:inline-block" />
-        </td>
-        <td id="mainContentCell" style="padding:10px;">
-          <router-view/>
-        </td>
-        <td id="rightNavCell" class="nav-cell" style="width:160px;">
-          <rightnavbar id="rightNavComp" class="side-nav-bar" style="display:inline-block" />
-        </td>
-        <td class="side-nav-selector">
-          <span @click="resizeRightNav">&#8801;</span>
-          </td>
-      </tr>
+
       <tr>
         <td id="footerCell" class="footer-cell" colspan=5 >    
           
         </td>
       </tr> 
-    </table> 
+    </table>  -->
   </div>
 </template>
 
@@ -94,15 +103,54 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  /* text-align: center; */
   color: #2c3e50;
+  background-color: blue;
+}
+
+.app-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+}
+
+.outercontent {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.innercontent {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  width: 100%;
+}
+header {
+  align-content: flex-start;
+}
+
+.content-fill {
+  flex: 1;
+}
+
+.scrollable {
+  overflow-y: scroll;
+}
+
+footer {
+  align-content: flex-end;
 }
 
 .banner-row {
   background-color:black; 
   height:62px; 
-  padding:0px;
-  margin:0px;
+  padding:0px; 
+  margin:0px; 
 }
 
 .side-nav-selector {
