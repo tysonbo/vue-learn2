@@ -96,9 +96,8 @@ export default {
       },
       onMessage(message) {
           // Check sender origin to be trusted
-          alert("message " + message);
+        
           alert("message.data " + message.data);
-          alert("message.message " + message.message);
           console.log("I reached the vue app with data: " + message.data);
           alert("I reached the vue app with data: " + message.data);
           var infodiv = document.getElementById("info");
