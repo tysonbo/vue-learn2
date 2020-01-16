@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-  <div id="info">Info Div</div>
+  
     <div id="outercontainer" class="app-container">
       <div class="outercontent">
         <header style="background-color: #356356"><bannernavbar/></header>
