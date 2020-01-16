@@ -73,6 +73,15 @@ export default {
     leftnavbar,
     rightnavbar
   },
+  created () {
+       if (window.addEventListener) {
+        window.addEventListener("message", this.onMessage, false)
+      }
+      else if (window.attachEvent) {
+        window.attachEvent("onmessage", this.onMessage, false);
+      }
+    },
+
   methods: {
     resizeLeftNav() {
             this.currentLeftNavWidth = this.currentLeftNavWidth == 2 ? 150 : 2; 
@@ -98,21 +107,14 @@ export default {
           // Check sender origin to be trusted
         
           alert("message.data " + message.data);
-          console.log("I reached the vue app with data: " + message.data);
+          
           alert("I reached the vue app with data: " + message.data);
           var infodiv = document.getElementById("info");
           infodiv.innerHTML = message.data;
       }
-    },
+    }
 
-    created () {
-       if (window.addEventListener) {
-        window.addEventListener("message", onMessage, false)
-      }
-      else if (window.attachEvent) {
-        window.attachEvent("onmessage", onMessage, false);
-      };
-    },
+    
   }
 
 </script>
