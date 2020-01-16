@@ -10,7 +10,26 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://blackrockdigital.github.io/startbootstrap-sb-admin-2/css/sb-admin-2.min.css" type="text/css" rel="stylesheet">
-
+    <script type="text/JavaScript">
+    
+      if (window.addEventListener) {
+        window.addEventListener("message", onMessage, false)
+      }
+      else if (window.attachEvent) {
+        window.attachEvent("onmessage", onMessage, false);
+      }
+    
+      function onMessage(message) {
+      // Check sender origin to be trusted
+      alert("message " + message);
+      alert("message.data " + message.data);
+      alert("message.message " + message.message);
+       console.log("I reached the react app with data: " + message.data);
+       alert("I reached the react app with data: " + message.data);
+       var infodiv = document.getElementById("info");
+       infodiv.innerHTML = message.data;
+      }
+    </script>
   </head>
   <body>
     <style>

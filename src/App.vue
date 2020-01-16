@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+  <div id="info">Info Div</div>
     <div id="outercontainer" class="app-container">
       <div class="outercontent">
         <header style="background-color: #356356"><bannernavbar/></header>
@@ -92,8 +93,27 @@ export default {
                 rightnavcell.setAttribute("style", "width:" + this.currentRightNavWidth.toString() + "px;");
                 rightnavcomp.setAttribute("style", "display:" + rightdisplay);
             }
+      },
+      onMessage(message) {
+          // Check sender origin to be trusted
+          alert("message " + message);
+          alert("message.data " + message.data);
+          alert("message.message " + message.message);
+          console.log("I reached the vue app with data: " + message.data);
+          alert("I reached the vue app with data: " + message.data);
+          var infodiv = document.getElementById("info");
+          infodiv.innerHTML = message.data;
       }
-    }
+    },
+
+    created () {
+       if (window.addEventListener) {
+        window.addEventListener("message", onMessage, false)
+      }
+      else if (window.attachEvent) {
+        window.attachEvent("onmessage", onMessage, false);
+      };
+    },
   }
 
 </script>
