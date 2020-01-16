@@ -1,9 +1,10 @@
 <template>
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
+    <div style="color:red; font-size: x-large" id="info">Info Div</div>
     <HelloWorld msg="Welcome to Your Vue.js App"/>
 
-    <div style="color:red; font-size: x-large" id="info">Info Div</div>
+
   </div>
 </template>
 
